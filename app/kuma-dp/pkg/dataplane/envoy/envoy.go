@@ -125,7 +125,7 @@ func (e *Envoy) Start(stop <-chan struct{}) error {
 	}
 	runLog.Info("fetched Envoy version", "version", envoyVersion)
 	runLog.Info("generating bootstrap configuration")
-	bootstrapConfig, version, err := e.opts.Generator(e.opts.Config.ControlPlane.URL, e.opts.Config, BootstrapParams{
+	bootstrapConfig, _, err := e.opts.Generator(e.opts.Config.ControlPlane.URL, e.opts.Config, BootstrapParams{
 		Dataplane:        e.opts.Dataplane,
 		BootstrapVersion: types.BootstrapVersion(e.opts.Config.Dataplane.BootstrapVersion),
 		DNSPort:          e.opts.DNSPort,
@@ -165,9 +165,6 @@ func (e *Envoy) Start(stop <-chan struct{}) error {
 		// so, let's turn it off to simplify getting started experience.
 		"--disable-hot-restart",
 		"--log-level", e.opts.LogLevel.String(),
-	}
-	if version != "" { // version is always send by Kuma CP, but we check empty for backwards compatibility reasons (new Kuma DP connects to old Kuma CP)
-		args = append(args, "--bootstrap-version", string(version))
 	}
 
 	// If the concurrency is explicit, use that. On Linux, users
