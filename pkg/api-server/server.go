@@ -35,6 +35,7 @@ import (
 	"github.com/kumahq/kuma/pkg/core/resources/registry"
 	"github.com/kumahq/kuma/pkg/core/runtime"
 	"github.com/kumahq/kuma/pkg/metrics"
+	"github.com/kumahq/kuma/pkg/plugins/authn/api-server/certs"
 	"github.com/kumahq/kuma/pkg/tokens/builtin"
 	tokens_server "github.com/kumahq/kuma/pkg/tokens/builtin/server"
 	util_prometheus "github.com/kumahq/kuma/pkg/util/prometheus"
@@ -285,7 +286,7 @@ func (a *ApiServer) startHttpServer(errChan chan error) *http.Server {
 
 func (a *ApiServer) startHttpsServer(errChan chan error) *http.Server {
 	var tlsConfig *tls.Config
-	if a.config.Authn.Type == "clientCerts" {
+	if a.config.Authn.Type == certs.PluginName {
 		tlsC, err := configureMTLS(a.config.Auth.ClientCertsDir)
 		if err != nil {
 			errChan <- err
