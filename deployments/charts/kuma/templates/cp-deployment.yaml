@@ -21,6 +21,9 @@ spec:
       annotations:
         checksum/config: {{ include (print $.Template.BasePath "/cp-configmap.yaml") . | sha256sum }}
         checksum/tls-secrets: {{ include (print $.Template.BasePath "/cp-webhooks-and-secrets.yaml") . | sha256sum }}
+        { { - range $key, $value := .Values.controlPlane.pod.annotations } }
+        { { $key } }: { { $value | quote } }
+        { { - end } }
       labels:
         {{- include "kuma.selectorLabels" . | nindent 8 }}
         app: kuma-control-plane
