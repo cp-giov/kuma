@@ -13,3 +13,7 @@ data:
     {{ if .Values.controlPlane.config }}
     {{ .Values.controlPlane.config | nindent 4 }}
     {{ end }}
+  {{- range $fileName, $fileContents := .Values.controlPlane.additionalFiles }}
+  {{- $fileName | nindent 2 }}: |
+  {{- $fileContents | nindent 4 }}
+  {{- end }}
