@@ -21,7 +21,7 @@ require (
 	github.com/golang/protobuf v1.5.2
 	github.com/google/uuid v1.3.0
 	github.com/grpc-ecosystem/go-grpc-prometheus v1.2.0
-	github.com/gruntwork-io/terratest v0.38.8
+	github.com/gruntwork-io/terratest v0.40.13
 	github.com/hoisie/mustache v0.0.0-20160804235033-6375acf62c69
 	github.com/iancoleman/orderedmap v0.2.0
 	github.com/kelseyhightower/envconfig v1.4.0
@@ -117,7 +117,7 @@ require (
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/gogo/protobuf v1.3.2 // indirect
 	github.com/golang/groupcache v0.0.0-20210331224755-41bb18bfe9da // indirect
-	github.com/google/go-cmp v0.5.6 // indirect
+	github.com/google/go-cmp v0.5.7 // indirect
 	github.com/google/gofuzz v1.1.0 // indirect
 	github.com/googleapis/gnostic v0.5.5 // indirect
 	github.com/gruntwork-io/go-commons v0.8.0 // indirect
